@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <script type="text/javascript" src="./lib/uploader.js"></script>
+  <script src="https://cdn.bootcss.com/babel-polyfill/7.4.3/polyfill.js"></script>
+  <title>Title</title>
+</head>
+<body>
+<input type="file" id="file">
+
+<button id="btn">按钮</button>
+
+<script type="text/javascript">
+  var token = 'Qyg33QIdecsgZ0AZF1M0GrckiLDYkNJ1G8w_G2hJ:9G-hJkFMkzA_LbMmjNnmK-m6jeY=:eyJyZXR1cm5Cb2R5Ijoie1wic3VjY2Vzc1wiOiB0cnVlLFwiZGF0YVwiOiB7XCJrZXlcIjpcIiQoa2V5KVwiLFwiaGFzaFwiOlwiJChldGFnKVwiLFwiZnNpemVcIjokKGZzaXplKSxcImJ1Y2tldFwiOlwiJChidWNrZXQpXCIsXCJwYXRoXCI6XCJodHRwOi8vcHEzY3Mwa3N5LmJrdC5jbG91ZGRuLmNvbS8kKGtleSlcIn19Iiwic2NvcGUiOiJyZWRidWNrX3N0b3JlIiwiZGVhZGxpbmUiOjE1NTYyNzM4OTF9'
+
+  var uploader = new Uploader({
+	el: document.getElementById('file'),
+	uploadUrl: 'http://up-z2.qiniup.com/',
+	getFormDataAsync: function (callback, file) {
+	  callback({
+		key: 'demo/' + Date.now() + file.name,
+		token: token,
+	  })
+	},
+  })
+
+  uploader.on('upload', function (e) {
+	console.log(e.data.path)
+  })
+
+</script>
+</body>
+</html>
